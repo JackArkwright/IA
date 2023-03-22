@@ -1,12 +1,9 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
-import java.nio.Buffer;
-import java.nio.BufferOverflowException;
 import java.util.ArrayList;
 import java.io.PrintWriter;
 import java.io.FileWriter;
-import java.io.RandomAccessFile;
 
 public class FileHandling {
     private static String line;
@@ -33,6 +30,8 @@ public class FileHandling {
             }
         } catch (IOException e) {
             System.out.println("There was an error reading the file");
+            e.printStackTrace();
+
         } return fileOutput;
     }
 
@@ -46,8 +45,27 @@ public class FileHandling {
     // Searches through a file with a list of usernames and passwords
     // Returns true or false based on whether the login has been found
     public static boolean login (String username, String password) {
-        line = singleLine("logins.txt");
-        String[] splitString = line.split(", ");
+        // Reading the whole file of Logins into an arraylist
+        ArrayList<String> file = new ArrayList<>(wholeFileRead("logins.txt"));
+        boolean cUsername = false; // represent whether logins found or not
+        boolean cPass = false;
+
+        for (int i=0;i<file.size();i++) {
+            line = file.get(i);
+            String[] splitString = line.split(", ");
+            if (username.equals(splitString[0])){
+                cUsername = true;
+            }
+            if (password.equals(splitString[1])){
+                cPass = true;
+            }
+        }
+
+        if (cPass && cUsername == true){
+            return true;
+        } else {
+            return false;
+        }
 
     }
 }
