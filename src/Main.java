@@ -13,6 +13,7 @@ public class Main {
         } else if (FileHandling.login(user,pass) == false){
             System.out.println("Incorrect data entered");
         }
+        Member Jack = new Member ("Jack Arkwright",17,'Y');
 
 
 

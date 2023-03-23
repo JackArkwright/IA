@@ -35,9 +35,9 @@ public class FileHandling {
         } return fileOutput;
     }
 
-    public static void fileWriter (String filename) {
-        try (PrintWriter pw = new PrintWriter(new FileWriter(filename))){
-
+    public static void lineFileWriter (String filename, boolean append, String input) {
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filename,append))){
+            pw.println(input);
         } catch (IOException e){
             System.out.println("There was an unexpected error");
         }
