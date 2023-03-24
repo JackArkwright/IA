@@ -18,10 +18,6 @@ public class Lesson {
         this.coach = coach;
     }
 
-    public void initialCreate (){
-        System.out.println("Enter a Student Name: ");
-        String student =
-    }
 
     public void addStudent (Member student){
 

@@ -14,6 +14,7 @@ public class Main {
             System.out.println("Incorrect data entered");
         }
         Member Jack = new Member ("Jack Arkwright",17,'Y');
+        Member Hannah = new Member ("Hannah Batt",17,'B');
 
 
 

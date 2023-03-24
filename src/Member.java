@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Member {
     private int age;
     private String name;
@@ -9,12 +11,21 @@ public class Member {
         this.age = age;
         this.level = level;
         saveMember();
-
     }
 
     public void saveMember (){
         String memberDetails = name + ", " + age + ", " + level;
-        FileHandling.lineFileWriter("members.txt",true,memberDetails);
+        boolean found = false;
+        ArrayList<String> check = new ArrayList<String>(FileHandling.wholeFileRead("members.txt"));
+        for (int i=0;i<check.size();i++) {
+            if (check.get(i).equals(memberDetails)) {
+                found = true;
+                break;
+            }
+        }
+        if(found = false){
+            FileHandling.lineFileWriter("members.txt",true,memberDetails);
+        }
     }
 
     //Get the members name
