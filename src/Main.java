@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
 public class Main {
+    public static Scanner main = new Scanner(System.in);
 
     public static void main(String[] args) {
-	    Scanner main = new Scanner(System.in);
         System.out.println("Username: ");
         String user = main.nextLine();
         System.out.println("Password: ");
@@ -13,13 +13,11 @@ public class Main {
         } else if (FileHandling.login(user,pass) == false){
             System.out.println("Incorrect data entered");
         }
-        Member Jack = new Member ("Jack Arkwright",17,'Y');
-        Member Hannah = new Member ("Hannah Batt",17,'B');
+
 
 
 
 
 
     }
-
 }

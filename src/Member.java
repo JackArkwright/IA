@@ -16,7 +16,7 @@ public class Member {
     public void saveMember (){
         String memberDetails = name + ", " + age + ", " + level;
         boolean found = false;
-        ArrayList<String> check = new ArrayList<String>(FileHandling.wholeFileRead("members.txt"));
+        ArrayList<String> check = new ArrayList<String>(FileHandling.wholeFileRead(filename));
         for (int i=0;i<check.size();i++) {
             if (check.get(i).equals(memberDetails)) {
                 found = true;
@@ -24,7 +24,7 @@ public class Member {
             }
         }
         if(found = false){
-            FileHandling.lineFileWriter("members.txt",true,memberDetails);
+            FileHandling.lineFileWriter(filename,true,memberDetails);
         }
     }
 
