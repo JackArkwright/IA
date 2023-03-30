@@ -42,6 +42,16 @@ public class FileHandling {
             System.out.println("There was an unexpected error");
         }
     }
+
+    public static void arrayListWrite (String filename, boolean append, ArrayList<String> input){
+        try (PrintWriter pw = new PrintWriter(new FileWriter(filename,append))){
+            for (int i=0;i<input.size();i++){
+                pw.println(input.get(i));
+            }
+        } catch (IOException e){
+            System.out.println("An error has occurred.");
+        }
+    }
     // Searches through a file with a list of usernames and passwords
     // Returns true or false based on whether the login has been found
     public static boolean login (String username, String password) {

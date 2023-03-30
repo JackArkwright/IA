@@ -13,6 +13,23 @@ public class Main {
         } else if (FileHandling.login(user,pass) == false){
             System.out.println("Incorrect data entered");
         }
+        Coaches Tom = new Coaches ("Tom Warburton",29);
+        System.out.println("What would you like to do? Create, View, Edit");
+        String input = main.nextLine();
+        if (input.equals("Create")){
+            System.out.println("What Day is the lesson? Mon, Tue, Wed etc.");
+            String day = main.nextLine();
+            System.out.println("What time is the lesson? 8pm, 5pm etc.");
+            String time = main.nextLine();
+            System.out.println("What Level is it? Y, R, G, O");
+            String temp = main.nextLine();
+            char level = temp.charAt(0);
+            System.out.println("Which Coach will be taking the class?: ");
+            String coach = main.next();
+
+            Lesson create = new Lesson(day, level, time, coach);
+            create.addStudents();
+        }
 
 
 

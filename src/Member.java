@@ -10,7 +10,6 @@ public class Member {
         this.name = name;
         this.age = age;
         this.level = level;
-        saveMember();
     }
 
     public void saveMember (){
