@@ -1,9 +1,5 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.FileHandler;
 
 public class Lesson {
 
@@ -27,9 +23,12 @@ public class Lesson {
 
 
     public void addStudents (){
+        // Array List that reads the members from the file
+        // Array List that saves the students to add to the file
         ArrayList<String> members = new ArrayList<String>(FileHandling.wholeFileRead(filenameM));
         ArrayList<String> students = new ArrayList<>();
         Scanner lesson = new Scanner(System.in);
+        // Continuing conditions
         boolean done = false;
         boolean found = false;
         String input;
@@ -38,13 +37,16 @@ public class Lesson {
             System.out.println("Enter a Student's Full Name :");
             input = lessonScanner.nextLine();
             for (int i=0;i<members.size();i++){
+                // Reads a line in the file and sees if the name matches the inputed name
                 String[] splitString = members.get(i).split(", ");
                 if (splitString[0].equals(input)){
                     students.add(members.get(i));
                     found = true;
                     break;
+                    //ends if if it is found
                 }
             }
+            // makes sure student exists in the files
             if (found == false){
                 System.out.println("That student is not logged as a member");
             }
@@ -54,6 +56,8 @@ public class Lesson {
                 done = true;
             }
         }
+        // Adds the line with the Details of the class followed by all students within and with
+        // END to show the end of the lesson in the file to make it easier to display a class
         FileHandling.lineFileWriter(filenameL,true, display);
         FileHandling.arrayListWrite(filenameL,true, students);
         FileHandling.lineFileWriter(filenameL,true,"END");

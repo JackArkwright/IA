@@ -5,6 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Username: ");
+        //Temporary login system
         String user = main.nextLine();
         System.out.println("Password: ");
         String pass = main.nextLine();
@@ -13,9 +14,13 @@ public class Main {
         } else if (FileHandling.login(user,pass) == false){
             System.out.println("Incorrect data entered");
         }
-        Coaches Tom = new Coaches ("Tom Warburton",29);
+        //Coaches Tom = new Coaches ("Tom Warburton",29);
+
+        //Gives the user options. Will be replaced with buttons.
         System.out.println("What would you like to do? Create, View, Edit");
         String input = main.nextLine();
+
+        //Collecting data to create a new lesson
         if (input.equals("Create")){
             System.out.println("What Day is the lesson? Mon, Tue, Wed etc.");
             String day = main.nextLine();
@@ -27,6 +32,7 @@ public class Main {
             System.out.println("Which Coach will be taking the class?: ");
             String coach = main.next();
 
+            //Creates the lesson with the data and calls the add students function straight away
             Lesson create = new Lesson(day, level, time, coach);
             create.addStudents();
         }
