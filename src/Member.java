@@ -5,15 +5,17 @@ public class Member {
     private String name;
     private char level; // red 'R', orange 'O', green 'G', yellow 'Y', adult 'A', coach 'C'
     private String filename = "members.txt";
+    private String email;
 
-    public Member (String name, int age, char level) {
+    public Member (String name, int age, char level,String email) {
         this.name = name;
         this.age = age;
         this.level = level;
+        this.email = email;
     }
 
     public void saveMember (){
-        String memberDetails = name + ", " + age + ", " + level;
+        String memberDetails = name + ", " + age + ", " + level + ", " + email;
         boolean found = false;
         ArrayList<String> check = new ArrayList<String>(FileHandling.wholeFileRead(filename));
         for (int i=0;i<check.size();i++) {
@@ -39,5 +41,6 @@ public class Member {
     public char getLevel(){
         return level;
     }
+    public String getEmail() { return email; }
 
 }
