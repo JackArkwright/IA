@@ -34,7 +34,7 @@ public class Main {
 
             //Creates the lesson with the data and calls the add students function straight away
             Lesson create = new Lesson(day, level, time, coach);
-            create.addStudents();
+            create.createLesson();
         }
 
 

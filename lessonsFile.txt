@@ -8,3 +8,7 @@ Thu, 8pm, Matt,Y
 Jack Arkwright, 17, Y
 Hannah Batt, 17, B
 END
+Thurs, 4pm, Matt,R
+Jack Arkwright, 17, Y
+Hannah Batt, 17, B
+END

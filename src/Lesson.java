@@ -1,3 +1,4 @@
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,7 +23,7 @@ public class Lesson {
     }
 
 
-    public void addStudents (){
+    public void createLesson (){
         // Array List that reads the members from the file
         // Array List that saves the students to add to the file
         ArrayList<String> members = new ArrayList<String>(FileHandling.wholeFileRead(filenameM));
@@ -33,11 +34,11 @@ public class Lesson {
         boolean found = false;
         String input;
 
-        while (done == false){
+        while (!done){
             System.out.println("Enter a Student's Full Name :");
             input = lessonScanner.nextLine();
             for (int i=0;i<members.size();i++){
-                // Reads a line in the file and sees if the name matches the inputed name
+                // Reads a line in the file and sees if the name matches the inputted name
                 String[] splitString = members.get(i).split(", ");
                 if (splitString[0].equals(input)){
                     students.add(members.get(i));
@@ -61,5 +62,22 @@ public class Lesson {
         FileHandling.lineFileWriter(filenameL,true, display);
         FileHandling.arrayListWrite(filenameL,true, students);
         FileHandling.lineFileWriter(filenameL,true,"END");
+    }
+
+
+    public void displayClass (String coach, String day, String time, String level){
+        // Read the lesson file and split the lines that have the lesson details in them into pieces
+        String line;
+        boolean found = true;
+        int i = 0;
+        ArrayList<String> lesson = new ArrayList<>();
+        lesson = FileHandling.wholeFileRead("lessonsFile.txt");
+
+        while (!found || i > lesson.size()) {
+            line = lesson.get(i);
+            if ()
+        }
+        // Check if that's the lesson they want displayed
+        // List the details and then a list of the students on screen, name and level.
     }
 }
