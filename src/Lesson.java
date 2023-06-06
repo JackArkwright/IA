@@ -1,4 +1,3 @@
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -67,15 +66,17 @@ public class Lesson {
 
     public void displayClass (String coach, String day, String time, String level){
         // Read the lesson file and split the lines that have the lesson details in them into pieces
-        String line;
+        String[] line;
         boolean found = true;
-        int i = 0;
         ArrayList<String> lesson = new ArrayList<>();
         lesson = FileHandling.wholeFileRead("lessonsFile.txt");
 
-        while (!found || i > lesson.size()) {
-            line = lesson.get(i);
-            if ()
+        for (int i=0;i<lesson.size();i++) {
+            line = lesson.get(i).split(", ");
+            if (line[0] == "Mon" || line[0] == "Tue" || line[0] == "Wed" || line[0] == "Thu" || line[0] == "Fri" || line[0] == "Sat") {
+                
+            }
+
         }
         // Check if that's the lesson they want displayed
         // List the details and then a list of the students on screen, name and level.
