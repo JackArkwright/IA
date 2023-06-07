@@ -8,9 +8,9 @@ public class Lesson {
     private String time; // the time on the day
     private String coach;
     private Scanner lessonScanner = new Scanner(System.in);
-    private String filenameL = "lessonsFile.txt";
-    private String filenameM = "members.txt";
-    private String display;
+    private static String filenameL = "lessonsFile.txt";
+    private static String filenameM = "members.txt";
+    private static String display;
 
     // Creating a new lesson that can have students and a coach assigned to it
     public Lesson (String day,char level,String time,String coach){
@@ -18,7 +18,11 @@ public class Lesson {
         this.level = level;
         this.time = time;
         this.coach = coach;
-        display = day + ", " + time + ", " + coach + "," + level;
+        display = day + ", " + time + ", " + coach + ", " + level;
+    }
+
+    public Lesson (String[] lessonData) {
+
     }
 
 
@@ -58,26 +62,21 @@ public class Lesson {
         }
         // Adds the line with the Details of the class followed by all students within and with
         // END to show the end of the lesson in the file to make it easier to display a class
+        FileHandling.lineFileWriter(filenameL,true,"START");
         FileHandling.lineFileWriter(filenameL,true, display);
         FileHandling.arrayListWrite(filenameL,true, students);
         FileHandling.lineFileWriter(filenameL,true,"END");
     }
 
 
-    public void displayClass (String coach, String day, String time, String level){
+    public static void displayClass (String coach, String day, String time, String level){
         // Read the lesson file and split the lines that have the lesson details in them into pieces
-        String[] line;
-        boolean found = true;
-        ArrayList<String> lesson = new ArrayList<>();
-        lesson = FileHandling.wholeFileRead("lessonsFile.txt");
+        String format = day + ", " + time + ", " + coach + ", " + level;
+        ArrayList<String> output = new ArrayList<>();
+        output = FileHandling.wholeFileRead(filenameL);
 
-        for (int i=0;i<lesson.size();i++) {
-            line = lesson.get(i).split(", ");
-            if (line[0] == "Mon" || line[0] == "Tue" || line[0] == "Wed" || line[0] == "Thu" || line[0] == "Fri" || line[0] == "Sat") {
-                
-            }
 
-        }
+
         // Check if that's the lesson they want displayed
         // List the details and then a list of the students on screen, name and level.
     }

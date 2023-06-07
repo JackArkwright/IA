@@ -6,8 +6,8 @@ public class Coaches extends Member{
     private String name;
     private char level = 'C';
 
-    public Coaches (String name, int age){
-        super(name,age,'C');
+    public Coaches (String name, int age,String email){
+        super(name,age,'C',email);
         saveCoach();
     }
 
