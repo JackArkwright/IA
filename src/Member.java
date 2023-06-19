@@ -7,15 +7,21 @@ public class Member {
     private String filename = "members.txt";
     private String email;
 
-    public Member (String name, int age, char level,String email) {
+    public Member (String name, int age, char level) {
         this.name = name;
         this.age = age;
         this.level = level;
-        this.email = email;
+    }
+
+    public Member (String csvData) {
+        String[] parsedData = csvData.split(", ");
+        this.name = parsedData[0];
+        this.age = Integer.parseInt(parsedData[1]);
+        this.level = parsedData[2].toCharArray()[0];
     }
 
     public void saveMember (){
-        String memberDetails = name + ", " + age + ", " + level + ", " + email;
+        String memberDetails = name + ", " + age + ", " + level;
         boolean found = false;
         ArrayList<String> check = new ArrayList<String>(FileHandling.wholeFileRead(filename));
         for (int i=0;i<check.size();i++) {
@@ -41,6 +47,11 @@ public class Member {
     public char getLevel(){
         return level;
     }
+
     public String getEmail() { return email; }
+
+    public String toString () {
+        return name + ", " + age + ", " + level;
+    }
 
 }

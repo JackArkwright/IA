@@ -8,9 +8,9 @@ public class Lesson {
     private String time; // the time on the day
     private String coach;
     private Scanner lessonScanner = new Scanner(System.in);
-    private static String filenameL = "lessonsFile.txt";
+    private static String filenameL = "lessonsFile.txt"; // TODO replace
     private static String filenameM = "members.txt";
-    private static String display;
+    private ArrayList<Member> students;
 
     // Creating a new lesson that can have students and a coach assigned to it
     public Lesson (String day,char level,String time,String coach){
@@ -18,11 +18,20 @@ public class Lesson {
         this.level = level;
         this.time = time;
         this.coach = coach;
-        display = day + ", " + time + ", " + coach + ", " + level;
+        this.students = new ArrayList<>();
     }
 
-    public Lesson (String[] lessonData) {
+    public Lesson (String csvData) {
+        String[] parsedData = csvData.split(", ");
+        this.day = parsedData[0];
+        this.time = parsedData[1];
+        this.coach = parsedData[2];
+        this.level = parsedData[3].toCharArray()[0];
+        this.students = new ArrayList<>();
+    }
 
+    public void addStudent (Member student) {
+        students.add(student);
     }
 
 
@@ -63,21 +72,12 @@ public class Lesson {
         // Adds the line with the Details of the class followed by all students within and with
         // END to show the end of the lesson in the file to make it easier to display a class
         FileHandling.lineFileWriter(filenameL,true,"START");
-        FileHandling.lineFileWriter(filenameL,true, display);
+        FileHandling.lineFileWriter(filenameL,true,day + ", " + time + ", " + coach + ", " + level);
         FileHandling.arrayListWrite(filenameL,true, students);
         FileHandling.lineFileWriter(filenameL,true,"END");
     }
 
-
-    public static void displayClass (String coach, String day, String time, String level){
-        // Read the lesson file and split the lines that have the lesson details in them into pieces
-        String format = day + ", " + time + ", " + coach + ", " + level;
-        ArrayList<String> output = new ArrayList<>();
-        output = FileHandling.wholeFileRead(filenameL);
-
-
-
-        // Check if that's the lesson they want displayed
-        // List the details and then a list of the students on screen, name and level.
+    public String toString() {
+        return day + ", " + time + ", " + coach + ", " + level;
     }
 }

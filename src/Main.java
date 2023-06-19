@@ -4,7 +4,7 @@ public class Main {
     public static Scanner main = new Scanner(System.in);
 
     public static void main(String[] args) {
-        System.out.println("Username: ");
+        /*System.out.println("Username: ");
         //Temporary login system
         String user = main.nextLine();
         System.out.println("Password: ");
@@ -15,7 +15,7 @@ public class Main {
             System.out.println("Incorrect data entered");
         }
         //Coaches Tom = new Coaches ("Tom Warburton",29);
-
+/*
         //Gives the user options. Will be replaced with buttons.
         System.out.println("What would you like to do? Create, View, Edit");
         String input = main.nextLine();
@@ -35,7 +35,9 @@ public class Main {
             //Creates the lesson with the data and calls the add students function straight away
             Lesson create = new Lesson(day, level, time, coach);
             create.createLesson();
-        }
+        }*/
+
+        Club testClub = new Club("lessonsFile.txt");
 
 
 

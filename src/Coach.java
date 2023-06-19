@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
-public class Coaches extends Member{
+public class Coach extends Member{
     private String filename = "coaches.txt";
     private int age;
     private String name;
     private char level = 'C';
 
-    public Coaches (String name, int age,String email){
-        super(name,age,'C',email);
+    public Coach(String name, int age, String email){
+        super(name,age,'C');
         saveCoach();
     }
 
