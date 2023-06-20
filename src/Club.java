@@ -3,13 +3,6 @@ import java.util.ArrayList;
 public class Club {
     private String filename;
     private ArrayList<Lesson> lessonSchedule;
-    /*
-    receive the filename
-    read the file into an arraylist of strings
-    Go through the array list and create a new string array when it reaches START including everything between START and END
-    pass string array to the constructor for lesson
-    add that lesson to an array list of lessons.
-    */
 
     public Club(String filename) {
         this.filename = filename;
@@ -18,7 +11,7 @@ public class Club {
     }
 
     // Initialise with data from the file
-    public void readLessonFile () {
+    public ArrayList<Lesson> readLessonFile () {
         // Get raw data from text file
         ArrayList<String> rawData = FileHandling.wholeFileRead(filename);
 
@@ -43,6 +36,8 @@ public class Club {
                 }
             }
         }
+
+        return lessonSchedule;
 
     }
 }

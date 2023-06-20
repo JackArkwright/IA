@@ -34,6 +34,8 @@ public class Lesson {
         students.add(student);
     }
 
+    public
+
 
     public void createLesson (){
         // Array List that reads the members from the file
@@ -75,6 +77,24 @@ public class Lesson {
         FileHandling.lineFileWriter(filenameL,true,day + ", " + time + ", " + coach + ", " + level);
         FileHandling.arrayListWrite(filenameL,true, students);
         FileHandling.lineFileWriter(filenameL,true,"END");
+    }
+
+    public void displayLesson () {
+        // call the readLessonFile method
+        // Loop through and get the lesson data from the list for each element,
+        // Check if the time, date, coach and level match the one the user wants
+        Club getLessons = new Club ("lesonsFile.txt");
+        ArrayList<Lesson> allLessons = new ArrayList<>();
+        allLessons = getLessons.readLessonFile();
+
+        boolean found = false;
+        int position = 0;
+
+        while (found == false) {
+            Lesson l = allLessons.get(position);
+
+        }
+
     }
 
     public String toString() {
