@@ -29,10 +29,18 @@ public class Club {
                 lessonSchedule.add(l);
                 // Parse each line until we reach END
                 System.out.println(rawData.get(position)); // TODO DEBUG
-                while (!rawData.get(position).equals("END")) {
-                    position++;
+                boolean end = false;
+                position++;
+
+                while (end == false || !rawData.get(position).equals("END")) {
+                    System.out.println(rawData.get(position));
                     Member m = new Member(rawData.get(position));
                     l.addStudent(m); // Assign this student to the lesson
+                    position++;
+                    if (rawData.get(position) == "END"){
+                        end = true;
+                        break;
+                    }
                 }
             }
         }

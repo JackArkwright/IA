@@ -34,8 +34,6 @@ public class Lesson {
         students.add(student);
     }
 
-    public
-
 
     public void createLesson (){
         // Array List that reads the members from the file
@@ -83,15 +81,20 @@ public class Lesson {
         // call the readLessonFile method
         // Loop through and get the lesson data from the list for each element,
         // Check if the time, date, coach and level match the one the user wants
+
         Club getLessons = new Club ("lesonsFile.txt");
-        ArrayList<Lesson> allLessons = new ArrayList<>();
-        allLessons = getLessons.readLessonFile();
+        ArrayList<Lesson> allLessons = getLessons.readLessonFile();
 
         boolean found = false;
         int position = 0;
 
         while (found == false) {
             Lesson l = allLessons.get(position);
+            if (toString().equals(l.toString())) {
+                for (Member i : students) {
+                    System.out.println(i);
+                }
+            }
 
         }
 

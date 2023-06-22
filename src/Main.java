@@ -38,6 +38,8 @@ public class Main {
         }*/
 
         Club testClub = new Club("lessonsFile.txt");
+        Lesson test = new Lesson("Mon",'Y',"7pm","Matt");
+        test.displayLesson();
 
 
 
