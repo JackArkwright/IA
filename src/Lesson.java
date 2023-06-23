@@ -82,7 +82,7 @@ public class Lesson {
         // Loop through and get the lesson data from the list for each element,
         // Check if the time, date, coach and level match the one the user wants
 
-        Club getLessons = new Club ("lesonsFile.txt");
+        Club getLessons = new Club ("lessonsFile.txt");
         ArrayList<Lesson> allLessons = getLessons.readLessonFile();
 
         boolean found = false;
@@ -93,6 +93,7 @@ public class Lesson {
             if (toString().equals(l.toString())) {
                 for (Member i : students) {
                     System.out.println(i);
+                    System.out.println("test");
                 }
             }
 

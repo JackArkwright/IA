@@ -19,29 +19,23 @@ public class Club {
         int position = 0;
         while (position < rawData.size()) {
             // Search for START
-            while (position < rawData.size() && !rawData.get(position).equals("START")) {
+            while (position < rawData.size() && !rawData.get(position).equals("START") && !rawData.get(position).equals("")) {
                 position++;
             }
             if (position < rawData.size()) {
                 // Skip past the START marker
-                position = position + 1;
+                position++;
                 Lesson l = new Lesson(rawData.get(position));
                 lessonSchedule.add(l);
                 // Parse each line until we reach END
                 System.out.println(rawData.get(position)); // TODO DEBUG
-                boolean end = false;
                 position++;
-
-                while (end == false || !rawData.get(position).equals("END")) {
-                    System.out.println(rawData.get(position));
+                while (position < rawData.size() && !rawData.get(position).equals("END") && !rawData.get(position).equals("")) {
                     Member m = new Member(rawData.get(position));
                     l.addStudent(m); // Assign this student to the lesson
                     position++;
-                    if (rawData.get(position) == "END"){
-                        end = true;
-                        break;
-                    }
                 }
+                System.out.println(rawData.get(position));
             }
         }
 
