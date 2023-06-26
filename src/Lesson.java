@@ -83,7 +83,10 @@ public class Lesson {
         // Check if the time, date, coach and level match the one the user wants
 
         Club getLessons = new Club ("lessonsFile.txt");
-        ArrayList<Lesson> allLessons = getLessons.readLessonFile();
+        ArrayList<Lesson> allLessons = getLessons.getLessonSchedule();
+        for (int i=0;i< allLessons.size();i++) {
+            System.out.println(allLessons.get(i));
+        }
 
         boolean found = false;
         int position = 0;

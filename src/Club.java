@@ -10,6 +10,10 @@ public class Club {
         readLessonFile();
     }
 
+    public ArrayList<Lesson> getLessonSchedule () {
+        return lessonSchedule;
+    }
+
     // Initialise with data from the file
     public ArrayList<Lesson> readLessonFile () {
         // Get raw data from text file
