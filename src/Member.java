@@ -11,6 +11,7 @@ public class Member {
         this.name = name;
         this.age = age;
         this.level = level;
+        saveMember();
     }
 
     public Member (String csvData) {
@@ -18,6 +19,7 @@ public class Member {
         this.name = parsedData[0];
         this.age = Integer.parseInt(parsedData[1]);
         this.level = parsedData[2].toCharArray()[0];
+        saveMember();
     }
 
     public void saveMember (){
@@ -47,8 +49,6 @@ public class Member {
     public char getLevel(){
         return level;
     }
-
-    public String getEmail() { return email; }
 
     public String toString () {
         return name + ", " + age + ", " + level;

@@ -19,6 +19,7 @@ public class Lesson {
         this.time = time;
         this.coach = coach;
         this.students = new ArrayList<>();
+        createLesson();
     }
 
     public Lesson (String csvData) {
@@ -77,34 +78,18 @@ public class Lesson {
         FileHandling.lineFileWriter(filenameL,true,"END");
     }
 
-    public void displayLesson () {
-        // call the readLessonFile method
-        // Loop through and get the lesson data from the list for each element,
-        // Check if the time, date, coach and level match the one the user wants
-
-        Club getLessons = new Club ("lessonsFile.txt");
-        ArrayList<Lesson> allLessons = getLessons.getLessonSchedule();
-        for (int i=0;i< allLessons.size();i++) {
-            System.out.println(allLessons.get(i));
+    public void display() {
+        System.out.println(toString());
+        for (Member i : students) {
+            System.out.println(i);
         }
-
-        boolean found = false;
-        int position = 0;
-
-        while (found == false) {
-            Lesson l = allLessons.get(position);
-            if (toString().equals(l.toString())) {
-                for (Member i : students) {
-                    System.out.println(i);
-                    System.out.println("test");
-                }
-            }
-
-        }
-
     }
 
     public String toString() {
         return day + ", " + time + ", " + coach + ", " + level;
+    }
+
+    public ArrayList<Member> getStudents() {
+        return students;
     }
 }
