@@ -1,13 +1,17 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Club {
-    private String filename;
+    private String memberFilename;
+    private String lessonFilename;
     private ArrayList<Lesson> lessonSchedule;
 
-    public Club(String filename) {
-        this.filename = filename;
+    public Club(String Lfilename, String MFilename) {
+        this.lessonFilename = Lfilename;
+        this.memberFilename = MFilename;
         lessonSchedule = new ArrayList<>();
         readLessonFile();
+        readMemberFile();
     }
 
     public ArrayList<Lesson> getLessonSchedule () {
@@ -17,7 +21,7 @@ public class Club {
     // Initialise with data from the file
     public ArrayList<Lesson> readLessonFile () {
         // Get raw data from text file
-        ArrayList<String> rawData = FileHandling.wholeFileRead(filename);
+        ArrayList<String> rawData = FileHandling.wholeFileRead(lessonFilename);
 
         // Repeat until end of file
         int position = 0;
@@ -47,6 +51,19 @@ public class Club {
 
     }
 
+    public ArrayList<Member> readMemberFile() {
+        // get the raw data
+        ArrayList<String> rawData = FileHandling.wholeFileRead(memberFilename);
+        ArrayList<Member> membersList = new ArrayList<>();
+
+        for (int i=0;i< rawData.size();i++) {
+            Member m = new Member(rawData.get(i));
+            membersList.add(m);
+        }
+
+        return membersList;
+    }
+
     public void displayLesson (String search) {
         // call the readLessonFile method
         // Loop through and get the lesson data from the list for each element,
@@ -70,10 +87,5 @@ public class Club {
         } else {
             System.out.println("Lesson not found");
         }
-    }
-
-    public void memberChange (String search, String replacement) {
-        ArrayList<String> members = FileHandling.wholeFileRead("members.txt");
-
     }
 }

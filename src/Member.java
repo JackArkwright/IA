@@ -35,6 +35,11 @@ public class Member {
         if(found = false){
             FileHandling.lineFileWriter(filename,true,memberDetails);
         }
+
+    }
+
+    public void displayMembers () {
+        ArrayList<Member> members =
     }
 
     //Get the members name

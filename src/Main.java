@@ -37,7 +37,7 @@ public class Main {
             create.createLesson();
         }*/
 
-        Club testClub = new Club("lessonsFile.txt");
+        Club testClub = new Club("lessonsFile.txt","members.txt");
         testClub.displayLesson("Mon, 7pm, Matt, Y");
         System.out.println("Finished");
 
