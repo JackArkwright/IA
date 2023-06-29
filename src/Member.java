@@ -38,8 +38,11 @@ public class Member {
 
     }
 
-    public void displayMembers () {
-        ArrayList<Member> members =
+    public static void displayMembers () {
+        ArrayList<Member> members = Club.readMemberFile();
+        for (int i=0;i<members.size();i++) {
+            System.out.println(members.get(i).toString());
+        }
     }
 
     //Get the members name

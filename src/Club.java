@@ -2,7 +2,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Club {
-    private String memberFilename;
+    private static String memberFilename;
     private String lessonFilename;
     private ArrayList<Lesson> lessonSchedule;
 
@@ -51,7 +51,7 @@ public class Club {
 
     }
 
-    public ArrayList<Member> readMemberFile() {
+    public static ArrayList<Member> readMemberFile() {
         // get the raw data
         ArrayList<String> rawData = FileHandling.wholeFileRead(memberFilename);
         ArrayList<Member> membersList = new ArrayList<>();
@@ -63,6 +63,12 @@ public class Club {
 
         return membersList;
     }
+
+    public void changeDetails (String current, String newDetails) {
+        ArrayList<String> rawData = FileHandling.wholeFileRead(memberFilename);
+
+    }
+
 
     public void displayLesson (String search) {
         // call the readLessonFile method

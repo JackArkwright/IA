@@ -40,6 +40,8 @@ public class Main {
         Club testClub = new Club("lessonsFile.txt","members.txt");
         testClub.displayLesson("Mon, 7pm, Matt, Y");
         System.out.println("Finished");
+        Member.displayMembers();
+
 
 
 
