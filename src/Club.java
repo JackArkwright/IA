@@ -66,6 +66,9 @@ public class Club {
 
     public void changeDetails (String current, String newDetails) {
         ArrayList<String> rawData = FileHandling.wholeFileRead(memberFilename);
+        for (int i=0;i< rawData.size();i++) {
+            if ()
+        }
 
     }
 
