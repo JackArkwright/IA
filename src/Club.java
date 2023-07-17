@@ -65,9 +65,12 @@ public class Club {
     }
 
     public void changeDetails (String current, String newDetails) {
+        String currentDetails;
         ArrayList<String> rawData = FileHandling.wholeFileRead(memberFilename);
         for (int i=0;i< rawData.size();i++) {
-            if ()
+            if (rawData.get(i).equals(current)) {
+                currentDetails = rawData.get(i);
+            }
         }
 
     }
