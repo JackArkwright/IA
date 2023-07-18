@@ -64,14 +64,20 @@ public class Club {
         return membersList;
     }
 
-    public void changeDetails (String current, String newDetails) {
-        String currentDetails;
+    public void changeDetails (String nameToFind, String newName, char newLevel, int newAge) {
+        String currentDetails = "";
+        int index;
         ArrayList<String> rawData = FileHandling.wholeFileRead(memberFilename);
         for (int i=0;i< rawData.size();i++) {
-            if (rawData.get(i).equals(current)) {
+            if (rawData.get(i).equals(nameToFind)) {
                 currentDetails = rawData.get(i);
+                index = i;
             }
         }
+        if (currentDetails.equals("")){
+            return;
+        }
+        String[] details = currentDetails.split(", ");
 
     }
 
