@@ -5,7 +5,6 @@ public class Member {
     private String name;
     private char level; // red 'R', orange 'O', green 'G', yellow 'Y', adult 'A', coach 'C'
     private String filename = "members.txt";
-    private String email;
 
     public Member (String name, int age, char level) {
         this.name = name;

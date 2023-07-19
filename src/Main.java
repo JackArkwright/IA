@@ -41,6 +41,7 @@ public class Main {
         testClub.displayLesson("Mon, 7pm, Matt, Y");
         System.out.println("Finished");
         Member.displayMembers();
+        testClub.changeDetails("Hannah the Rizz Master","Hannah the Rizz Master", 'Y',17);
 
 
 

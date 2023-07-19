@@ -1,9 +1,8 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Club {
     private static String memberFilename;
-    private String lessonFilename;
+    private final String lessonFilename;
     private ArrayList<Lesson> lessonSchedule;
 
     public Club(String Lfilename, String MFilename) {
@@ -56,8 +55,8 @@ public class Club {
         ArrayList<String> rawData = FileHandling.wholeFileRead(memberFilename);
         ArrayList<Member> membersList = new ArrayList<>();
 
-        for (int i=0;i< rawData.size();i++) {
-            Member m = new Member(rawData.get(i));
+        for (String rawDatum : rawData) {
+            Member m = new Member(rawDatum);
             membersList.add(m);
         }
 
@@ -66,18 +65,28 @@ public class Club {
 
     public void changeDetails (String nameToFind, String newName, char newLevel, int newAge) {
         String currentDetails = "";
-        int index;
+        String[] details = new String[3];
+        int index = -1;
         ArrayList<String> rawData = FileHandling.wholeFileRead(memberFilename);
+
         for (int i=0;i< rawData.size();i++) {
-            if (rawData.get(i).equals(nameToFind)) {
+            details = rawData.get(i).split(", ");
+            if (details[0].equals(nameToFind)) {
                 currentDetails = rawData.get(i);
                 index = i;
             }
         }
         if (currentDetails.equals("")){
+            System.out.println("BrOkE HeLp");
             return;
         }
-        String[] details = currentDetails.split(", ");
+
+        String newDetails = newName + ", " + newAge + ", " + newLevel;
+        rawData.remove(index);
+        rawData.add(index,newDetails);
+
+        FileHandling.arrayListWrite(memberFilename,false,rawData);
+
 
     }
 
@@ -93,14 +102,14 @@ public class Club {
         Lesson l;
         l = allLessons.get(position);
 
-        while (position < allLessons.size() && found == false) {
+        while (position < allLessons.size() && !found) {
             l = allLessons.get(position);
             if (l.toString().equals(search)) {
                 found = true;
             }
             position++;
         }
-        if(found == true) {
+        if(found) {
             l.display();
         } else {
             System.out.println("Lesson not found");
