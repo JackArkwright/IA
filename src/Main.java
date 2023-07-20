@@ -1,9 +1,18 @@
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner main = new Scanner(System.in);
 
     public static void main(String[] args) {
+        JFrame frame = new JFrame("SHLTC");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        GUI myGUI = new GUI(600,400);
+        frame.add(myGUI);
+        frame.pack();
+        frame.setVisible(true);
+
+
         /*System.out.println("Username: ");
         //Temporary login system
         String user = main.nextLine();
