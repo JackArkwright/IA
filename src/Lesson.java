@@ -50,18 +50,18 @@ public class Lesson {
         while (!done){
             System.out.println("Enter a Student's Full Name :");
             input = lessonScanner.nextLine();
-            for (int i=0;i<members.size();i++){
+            for (String member : members) {
                 // Reads a line in the file and sees if the name matches the inputted name
-                String[] splitString = members.get(i).split(", ");
-                if (splitString[0].equals(input)){
-                    students.add(members.get(i));
+                String[] splitString = member.split(", ");
+                if (splitString[0].equals(input)) {
+                    students.add(member);
                     found = true;
                     break;
                     //ends if if it is found
                 }
             }
             // makes sure student exists in the files
-            if (found == false){
+            if (!found){
                 System.out.println("That student is not logged as a member");
             }
             System.out.println("Would you like to add another student? Y or N ");

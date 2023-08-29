@@ -25,13 +25,13 @@ public class Member {
         String memberDetails = name + ", " + age + ", " + level;
         boolean found = false;
         ArrayList<String> check = new ArrayList<String>(FileHandling.wholeFileRead(filename));
-        for (int i=0;i<check.size();i++) {
-            if (check.get(i).equals(memberDetails)) {
+        for (String s : check) {
+            if (s.equals(memberDetails)) {
                 found = true;
                 break;
             }
         }
-        if(found = false){
+        if(found == false){
             FileHandling.lineFileWriter(filename,true,memberDetails);
         }
 
@@ -39,8 +39,8 @@ public class Member {
 
     public static void displayMembers () {
         ArrayList<Member> members = Club.readMemberFile();
-        for (int i=0;i<members.size();i++) {
-            System.out.println(members.get(i).toString());
+        for (Member member : members) {
+            System.out.println(member.toString());
         }
     }
 

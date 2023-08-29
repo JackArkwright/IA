@@ -16,13 +16,13 @@ public class Coach extends Member{
         System.out.println(coachDetails);
         boolean found = false;
         ArrayList<String> check = new ArrayList<String>(FileHandling.wholeFileRead(filename));
-        for (int i=0;i<check.size();i++) {
-            if (check.get(i).equals(coachDetails)) {
+        for (String s : check) {
+            if (s.equals(coachDetails)) {
                 found = true;
                 break;
             }
         }
-        if(found = false){
+        if(!found){
             FileHandling.lineFileWriter(filename,true,coachDetails);
         }
     }
