@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.Scanner;
 
 public class Main {
@@ -6,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        GUI.LoginScreen();
+        LoginGUI.LoginScreen();
 
         Club testClub = new Club("lessonsFile.txt","members.txt");
         testClub.displayLesson("Mon, 7pm, Matt, Y");

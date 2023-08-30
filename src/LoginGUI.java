@@ -1,9 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 
-public class GUI {
+public class LoginGUI {
 
     private static JTextField userText;
     private static JTextField newUserText;
@@ -43,7 +44,7 @@ public class GUI {
         passwordText.setBounds(100,50,165,25);
         panel.add(passwordText);
 
-        JButton login = loginJButton();
+        JButton login = loginJButton(frame);
         login.setFocusable(false);
         panel.add(login);
 
@@ -62,7 +63,7 @@ public class GUI {
     public static void newUserScreen() {
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("SHLTC - New User");
-        frame.setSize(350,210);
+        frame.setSize(350,250);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
 
@@ -76,76 +77,89 @@ public class GUI {
         title.setFont(new Font("Comic Sans",Font.BOLD,14));
         panel.add(title);
 
-        JLabel username = new JLabel("Username");
-        username.setBounds(10,40,100,25);
-        panel.add(username);
+        JLabel name = new JLabel("Full Name");
+        name.setBounds(10,40,100,25);
+        panel.add(name);
 
         newUserText = new JTextField();
         newUserText.setBounds(120,40,165,25);
         panel.add(newUserText);
 
+        JLabel username = new JLabel("Username");
+        username.setBounds(10,70,100,25);
+        panel.add(username);
+
+        newUserText = new JTextField();
+        newUserText.setBounds(120,70,165,25);
+        panel.add(newUserText);
+
         JLabel password = new JLabel("Password");
-        password.setBounds(10,70,100,25);
+        password.setBounds(10,100,100,25);
         panel.add(password);
 
         newPasswordtext = new JPasswordField();
-        newPasswordtext.setBounds(120,70,165,25);
+        newPasswordtext.setBounds(120,100,165,25);
         panel.add(newPasswordtext);
 
         JLabel cPassword = new JLabel("Verify Password");
-        cPassword.setBounds(10,100,100,25);
+        cPassword.setBounds(10,130,100,25);
         panel.add(cPassword);
 
         cNewPass = new JPasswordField();
-        cNewPass.setBounds(120,100,165,25);
+        cNewPass.setBounds(120,130,165,25);
         panel.add(cNewPass);
 
-        JButton confirmNewUser = confirmNewUser();
+        JButton confirmNewUser = confirmNewUser(frame);
         confirmNewUser.setFocusable(false);
         panel.add(confirmNewUser);
 
         failure = new JLabel();
-        failure.setBounds(100,135,150,25);
+        failure.setBounds(100,165,150,25);
         panel.add(failure);
 
         frame.setVisible(true);
 
     }
 
-    public static void homePage(){
-        JPanel panel = new JPanel();
-        JFrame frame = new JFrame("SHLTC");
-        frame.setSize(350,200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(panel);
-    }
-
-    private static JButton loginJButton() {
+    private static JButton loginJButton(JFrame frame) {
         JButton login = new JButton("Login");
         login.setBounds(10,85,80,25);
         login.addActionListener(e -> {
             String user = userText.getText();
             String password = passwordText.getText();
+            int index = 0;
 
             ArrayList<String> loginData = FileHandling.wholeFileRead("logins.txt");
             boolean confirmed = false;
 
-            for (String s : loginData) {
+            ArrayList<String> modifiedData = new ArrayList<>();
+
+            for (String element : loginData) {
+                int commaIndex = element.lastIndexOf(',');
+                if (commaIndex != -1) {
+                    String modifiedElement = element.substring(0, commaIndex);
+                    modifiedData.add(modifiedElement);
+                }
+            }
+
+            for (String s : modifiedData) {
                 if (s.equals(user + ", " + password)) {
                     confirmed = true;
                     break;
                 }
+                index++;
             }
             if (!confirmed) {
                 success.setText("Login Unsuccessful");
                 count++;
             } else {
                 success.setText("Login Successful");
-                homePage();
+                frame.dispose();
+                String[] split = loginData.get(index).split(", ");
+                HomeScreenGUI.homeScreen(split[2]);
             }
 
             if (count == 5) {
-                loginJButton().setEnabled(false);
                 System.exit(0);
             }
         });
@@ -162,9 +176,9 @@ public class GUI {
         return newUser;
     }
 
-    public static JButton confirmNewUser() {
+    public static JButton confirmNewUser(JFrame frame) {
         JButton confirmNewUser = new JButton("Confirm");
-        confirmNewUser.setBounds(10,135,80,25);
+        confirmNewUser.setBounds(10,165,80,25);
         confirmNewUser.addActionListener(e -> {
             String user = newUserText.getText();
             String password = newPasswordtext.getText();
@@ -175,21 +189,22 @@ public class GUI {
 
             if (password.equals(cPassword)) {
                 for (String s : loginData) {
-                    if (s.equals(user + ", " + password)) {
-
+                    if (!s.equals(user + ", " + password)) {
+                        ready = true;
+                    } else {
+                        ready = false;
                     }
                 }
                 if (ready) {
-                    FileHandling.lineFileWriter("logins.txt",true,null);
+                    FileHandling.lineFileWriter("logins.txt",true,(user + ", " + password));
+                    failure.setText("New User Created");
+                    frame.dispose();
+                    LoginScreen();
+
                 }
             } else {
                 failure.setText("Passwords Do Not Match");
             }
-
-
-
-
-
         });
         return confirmNewUser;
     }

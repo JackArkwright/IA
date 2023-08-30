@@ -31,7 +31,7 @@ public class Member {
                 break;
             }
         }
-        if(found == false){
+        if(!found){
             FileHandling.lineFileWriter(filename,true,memberDetails);
         }
 
