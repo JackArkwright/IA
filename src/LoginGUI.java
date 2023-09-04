@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public class LoginGUI {
 
     private static JTextField userText;
+    private static JTextField nameText;
     private static JTextField newUserText;
     private static JPasswordField cNewPass;
     private static JPasswordField passwordText;
@@ -17,17 +18,19 @@ public class LoginGUI {
 
     public static void LoginScreen() {
 
+        //creating the frame and panel to hold components
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("SHLTC - Login");
         frame.setSize(350,200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
+        panel.setLayout(null);
 
+        //Making the image icon the club logo
         ImageIcon logo = new ImageIcon("logo.png");
         frame.setIconImage(logo.getImage());
 
-        panel.setLayout(null);
-
+        //creating the username label and text field
         JLabel userLabel = new JLabel("Username");
         userLabel.setBounds(10,20,80,25);
         panel.add(userLabel);
@@ -36,14 +39,17 @@ public class LoginGUI {
         userText.setBounds(100,20,165,25);
         panel.add(userText);
 
+        //creating the same thing for the password
         JLabel passwordLabel = new JLabel("Password");
         passwordLabel.setBounds(10,50,80,25);
         panel.add(passwordLabel);
 
+        //JPasswordField makes the password appear as dots
         passwordText = new JPasswordField();
         passwordText.setBounds(100,50,165,25);
         panel.add(passwordText);
 
+        //creating 2 buttons for logging in and creating new user
         JButton login = loginJButton(frame);
         login.setFocusable(false);
         panel.add(login);
@@ -52,6 +58,7 @@ public class LoginGUI {
         newUser.setFocusable(false);
         panel.add(newUser);
 
+        //login confirmation label
         success = new JLabel("");
         success.setBounds(100,85,300,25);
         panel.add(success);
@@ -61,6 +68,10 @@ public class LoginGUI {
     }
 
     public static void newUserScreen() {
+
+        //creating the gui panel and frame for the new user option
+        //adding the same thing as the last method but with some extra
+        //text fields for name and password confirmation
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("SHLTC - New User");
         frame.setSize(350,250);
@@ -81,9 +92,9 @@ public class LoginGUI {
         name.setBounds(10,40,100,25);
         panel.add(name);
 
-        newUserText = new JTextField();
-        newUserText.setBounds(120,40,165,25);
-        panel.add(newUserText);
+        nameText = new JTextField();
+        nameText.setBounds(120,40,165,25);
+        panel.add(nameText);
 
         JLabel username = new JLabel("Username");
         username.setBounds(10,70,100,25);
@@ -122,6 +133,11 @@ public class LoginGUI {
     }
 
     private static JButton loginJButton(JFrame frame) {
+
+        //the login button. Checks the login and password entered with
+        //the file attached to the program allowing them to access
+        //the next screen or not depending on if the details match
+
         JButton login = new JButton("Login");
         login.setBounds(10,85,80,25);
         login.addActionListener(e -> {
@@ -167,6 +183,8 @@ public class LoginGUI {
     }
 
     public static JButton newUserButton(JFrame frame) {
+
+        //this button opens the new panel and frame for creating a user
         JButton newUser = new JButton("New User");
         newUser.setBounds(10,115,90,25);
         newUser.addActionListener(e -> {
@@ -177,9 +195,15 @@ public class LoginGUI {
     }
 
     public static JButton confirmNewUser(JFrame frame) {
+
+        //confirms that the details are valid by checking the passwords match
+        //then adds the username and password to the logins file in the correct
+        //format
+
         JButton confirmNewUser = new JButton("Confirm");
         confirmNewUser.setBounds(10,165,80,25);
         confirmNewUser.addActionListener(e -> {
+            String name = nameText.getText();
             String user = newUserText.getText();
             String password = newPasswordtext.getText();
             String cPassword = cNewPass.getText();
@@ -196,7 +220,7 @@ public class LoginGUI {
                     }
                 }
                 if (ready) {
-                    FileHandling.lineFileWriter("logins.txt",true,(user + ", " + password));
+                    FileHandling.lineFileWriter("logins.txt",true,(user + ", " + password + ", " + name));
                     failure.setText("New User Created");
                     frame.dispose();
                     LoginScreen();

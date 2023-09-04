@@ -1,13 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class HomeScreenGUI {
 
     public static void homeScreen(String name) {
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("SHLTC - Home");
-        frame.setSize(700,550);
+        frame.setSize(800,650);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         frame.setResizable(false);
@@ -17,18 +16,40 @@ public class HomeScreenGUI {
         frame.setIconImage(logo.getImage());
 
         JLabel title = new JLabel("Welcome " + name);
-        title.setBounds(10,10,400,50);
+        title.setBounds(50,50,400,50);
         title.setFont(new Font("Serif",Font.BOLD,30));
         panel.add(title);
 
-        frame.setVisible(true);
+        JButton showMembers = showMembersButton(frame);
+        panel.add(showMembers);
 
-        JButton showMembers = showMembersButton();
+        JButton showLessons = showLessonsButton();
+        panel.add(showLessons);
+
+        frame.setVisible(true);
     }
 
-    public static JButton showMembersButton() {
-        JButton showMembers = new JButton();
+    public static JButton showMembersButton(JFrame frame) {
+        JButton showMembers = new JButton("Members");
+        showMembers.setFocusable(false);
+        showMembers.setBounds(50,150,200,150);
+        showMembers.addActionListener(e -> {
+            frame.dispose();
+            MembersGUI.membersScreen();
+        });
+
         return showMembers;
+    }
+
+    public static JButton showLessonsButton() {
+        JButton showLessons = new JButton("Lessons");
+        showLessons.setFocusable(false);
+        showLessons.setBounds(50,350,200,150);
+        showLessons.addActionListener(e -> {
+
+        });
+
+        return showLessons;
     }
 
 }

@@ -63,6 +63,18 @@ public class Club {
         return membersList;
     }
 
+    public static ArrayList<String> memberNames() {
+        ArrayList<Member> membersList = readMemberFile();
+        ArrayList<String> membersNames = new ArrayList<>();
+
+        for (Member e : membersList) {
+            String name = e.getName();
+            membersNames.add(name);
+        }
+
+        return membersNames;
+    }
+
     public void changeDetails (String nameToFind, String newName, char newLevel, int newAge) {
         String currentDetails = "";
         String[] details = new String[3];

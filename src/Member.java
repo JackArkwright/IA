@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Member {
     private int age;
@@ -32,7 +33,9 @@ public class Member {
             }
         }
         if(!found){
-            FileHandling.lineFileWriter(filename,true,memberDetails);
+            check.add(memberDetails);
+            Collections.sort(check);
+            FileHandling.arrayListWrite(filename,false,check);
         }
 
     }
