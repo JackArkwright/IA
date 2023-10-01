@@ -172,7 +172,7 @@ public class LoginGUI {
                 success.setText("Login Successful");
                 frame.dispose();
                 String[] split = loginData.get(index).split(", ");
-                HomeScreenGUI.homeScreen(split[2]);
+                HomeScreenGUI.homeScreen();
             }
 
             if (count == 5) {

@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class HomeScreenGUI {
 
-    public static void homeScreen(String name) {
+    public static void homeScreen() {
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("SHLTC - Home");
         frame.setSize(800,650);
@@ -15,7 +15,7 @@ public class HomeScreenGUI {
         ImageIcon logo = new ImageIcon("logo.png");
         frame.setIconImage(logo.getImage());
 
-        JLabel title = new JLabel("Welcome " + name);
+        JLabel title = new JLabel("Welcome ");
         title.setBounds(50,50,400,50);
         title.setFont(new Font("Serif",Font.BOLD,30));
         panel.add(title);
