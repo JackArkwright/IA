@@ -6,7 +6,7 @@ public class HomeScreenGUI {
     public static void homeScreen() {
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("SHLTC - Home");
-        frame.setSize(800,650);
+        frame.setSize(500,350);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
         frame.setResizable(false);
@@ -16,14 +16,14 @@ public class HomeScreenGUI {
         frame.setIconImage(logo.getImage());
 
         JLabel title = new JLabel("Welcome ");
-        title.setBounds(50,50,400,50);
+        title.setBounds(25,25,400,50);
         title.setFont(new Font("Serif",Font.BOLD,30));
         panel.add(title);
 
         JButton showMembers = showMembersButton(frame);
         panel.add(showMembers);
 
-        JButton showLessons = showLessonsButton();
+        JButton showLessons = showLessonsButton(frame);
         panel.add(showLessons);
 
         frame.setVisible(true);
@@ -32,7 +32,7 @@ public class HomeScreenGUI {
     public static JButton showMembersButton(JFrame frame) {
         JButton showMembers = new JButton("Members");
         showMembers.setFocusable(false);
-        showMembers.setBounds(50,150,200,150);
+        showMembers.setBounds(25,90,200,75);
         showMembers.addActionListener(e -> {
             frame.dispose();
             MembersGUI.membersScreen();
@@ -41,12 +41,13 @@ public class HomeScreenGUI {
         return showMembers;
     }
 
-    public static JButton showLessonsButton() {
+    public static JButton showLessonsButton(JFrame frame) {
         JButton showLessons = new JButton("Lessons");
         showLessons.setFocusable(false);
-        showLessons.setBounds(50,350,200,150);
+        showLessons.setBounds(25,175,200,75);
         showLessons.addActionListener(e -> {
-
+            frame.dispose();
+            LessonsGUI.lessonScreen();
         });
 
         return showLessons;

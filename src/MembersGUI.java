@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -261,7 +262,9 @@ public class MembersGUI {
             }
 
             members.set(index,(name + ", " + age + ", " + level));
-            FileHandling.arrayListWrite("members.txt",false,members);
+            ArrayList<String> membersDetails = FileHandling.wholeFileRead("members.txt");
+            membersDetails.set(index,(name + ", " + age + ", " + level));
+            FileHandling.arrayListWrite("members.txt",false,membersDetails);
             frame.dispose();
             membersScreen();
         });
@@ -292,9 +295,12 @@ public class MembersGUI {
                 level = "B";
             }
 
-            members.add(name + ", " + age + ", " + level);
+            members.add(name);
             Collections.sort(members);
-            FileHandling.arrayListWrite("members.txt",false,members);
+            ArrayList<String> membersDetails = FileHandling.wholeFileRead("members.txt");
+            membersDetails.add(name + ", " + age + ", " + level);
+            Collections.sort(membersDetails);
+            FileHandling.arrayListWrite("members.txt",false,membersDetails);
             frame.dispose();
             membersScreen();
         });
