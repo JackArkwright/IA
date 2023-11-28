@@ -78,11 +78,12 @@ public class Lesson {
         FileHandling.lineFileWriter(filenameL,true,"END");
     }
 
-    public void display() {
-        System.out.println(toString());
-        for (Member i : students) {
-            System.out.println(i);
+    public ArrayList<Member> display() {
+        ArrayList<Member> lessonStudents = new ArrayList<>();
+        for (Member student : students) {
+            lessonStudents.add(student);
         }
+        return lessonStudents;
     }
 
     public String toString() {

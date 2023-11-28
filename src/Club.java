@@ -2,12 +2,12 @@ import java.util.ArrayList;
 
 public class Club {
     private static String memberFilename;
-    private final String lessonFilename;
-    private ArrayList<Lesson> lessonSchedule;
+    private static String lessonFilename;
+    private static ArrayList<Lesson> lessonSchedule;
 
     public Club(String Lfilename, String MFilename) {
-        this.lessonFilename = Lfilename;
-        this.memberFilename = MFilename;
+        lessonFilename = Lfilename;
+        memberFilename = MFilename;
         lessonSchedule = new ArrayList<>();
         readLessonFile();
         readMemberFile();
@@ -18,7 +18,7 @@ public class Club {
     }
 
     // Initialise with data from the file
-    public ArrayList<Lesson> readLessonFile () {
+    public static ArrayList<Lesson> readLessonFile () {
         // Get raw data from text file
         ArrayList<String> rawData = FileHandling.wholeFileRead(lessonFilename);
 
@@ -103,7 +103,7 @@ public class Club {
     }
 
 
-    public void displayLesson (String search) {
+    public static ArrayList<Member> displayLesson (String search) {
         // call the readLessonFile method
         // Loop through and get the lesson data from the list for each element,
         // Check if the time, date, coach and level match the one the user wants
@@ -121,10 +121,9 @@ public class Club {
             }
             position++;
         }
-        if(found) {
-            l.display();
-        } else {
-            System.out.println("Lesson not found");
-        }
+        ArrayList<Member> lessonStudents = new ArrayList<>();
+        lessonStudents = l.display();
+
+        return lessonStudents;
     }
 }
