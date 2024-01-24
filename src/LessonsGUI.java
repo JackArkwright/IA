@@ -84,18 +84,6 @@ public class LessonsGUI {
         scrollPane.setBounds(10,10,150,280);
         panel.add(scrollPane);
 
-        JButton addMember = addMemberButton(frame);
-        addMember.setFocusable(false);
-        panel.add(addMember);
-
-        JButton removeMember = removeMemberButton(frame);
-        removeMember.setFocusable(false);
-        panel.add(removeMember);
-
-        JButton back = backButton(frame);
-        back.setFocusable(false);
-        panel.add(back);
-
 
         frame.setVisible(true);
     }
@@ -112,17 +100,5 @@ public class LessonsGUI {
 
         return viewStudents;
     }
-
-    public static JButton addMemberButton(JFrame frame) {
-        JButton addMember = new JButton("New Member");
-        addMember.setBounds(270,110,120,25);
-
-        addMember.addActionListener(e -> {
-            frame.dispose();
-            addMemberScreen();
-        });
-        return addMember;
-    }
-
 
 }
