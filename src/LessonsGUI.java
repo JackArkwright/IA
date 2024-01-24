@@ -21,12 +21,18 @@ public class LessonsGUI {
         frame.setIconImage(logo.getImage());
 
         ArrayList<Lesson> allLessons = new ArrayList<>(Club.readLessonFile());
-        String[] lessons = new String[allLessons.size()];
-        for (int i=0;i< allLessons.size();i++) {
-            lessons[i] = allLessons.get(i).toString();
+        String[] lessons = new String[allLessons.size()/3];
+        ArrayList<Lesson> uniqueList = new ArrayList<>();
+        for (int i=0;i<allLessons.size()/3;i++) {
+            uniqueList.add(allLessons.get(i));
+        }
+        for (int i=0;i<uniqueList.size();i++){
+            lessons[i] = uniqueList.get(i).toString();
         }
 
+
         lessonJList = new JList<>(lessons);
+        lessonJList.setListData(new String[0]);
         lessonJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         lessonJList.setModel(model);
 
@@ -54,7 +60,7 @@ public class LessonsGUI {
         frame.setVisible(true);
     }
 
-    public static void viewStudentsScreen(String lessonName) {
+    private static void viewStudentsScreen(String lessonName) {
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("SHLTC - Lessons");
         frame.setSize(500,350);
@@ -84,11 +90,13 @@ public class LessonsGUI {
         scrollPane.setBounds(10,10,150,280);
         panel.add(scrollPane);
 
+        JButton back = backbutton(frame);
+        panel.add(back);
 
         frame.setVisible(true);
     }
 
-    public static JButton viewSudentsButton(JFrame frame,String[] lessons){
+    private static JButton viewSudentsButton(JFrame frame,String[] lessons){
         JButton viewStudents = new JButton("Students");
         viewStudents.setBounds(280,70,120,25);
 
@@ -99,6 +107,18 @@ public class LessonsGUI {
         });
 
         return viewStudents;
+    }
+
+    private static JButton backbutton(JFrame frame){
+        JButton back = new JButton("Back");
+        back.setBounds(280,70,120,25);
+
+        back.addActionListener(e -> {
+            frame.dispose();
+            LessonsGUI.lessonScreen();
+        });
+
+        return back;
     }
 
 }

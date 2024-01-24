@@ -134,6 +134,9 @@ public class MembersGUI {
         JButton confirmDetails = confirmDetailsButton(frame,members);
         panel.add(confirmDetails);
 
+        JButton back2 = back2button(frame);
+        panel.add(back2);
+
         frame.setVisible(true);
 
     }
@@ -235,6 +238,17 @@ public class MembersGUI {
             HomeScreenGUI.homeScreen();
         });
         return back;
+    }
+
+    private static JButton back2button(JFrame frame) {
+        JButton back2 = new JButton("Back");
+        back2.setBounds(10,170,100,25);
+
+        back2.addActionListener(e -> {
+            frame.dispose();
+            MembersGUI.membersScreen();
+        });
+        return back2;
     }
 
 
