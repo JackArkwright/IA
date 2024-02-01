@@ -6,8 +6,8 @@ public class LessonsGUI {
 
     private static JList<String> lessonJList;
     private static JList<String> studentsList;
-    private static DefaultListModel<String> model = new DefaultListModel<>();
-    private static DefaultListModel<String> model2 = new DefaultListModel<>();
+    private static DefaultListModel<String> model;
+    private static DefaultListModel<String> model2;
     public static void lessonScreen() {
         JPanel panel = new JPanel();
         JFrame frame = new JFrame("SHLTC - Lessons");
@@ -30,7 +30,7 @@ public class LessonsGUI {
             lessons[i] = uniqueList.get(i).toString();
         }
 
-
+        model = new DefaultListModel<>();
         lessonJList = new JList<>(lessons);
         lessonJList.setListData(new String[0]);
         lessonJList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -78,6 +78,7 @@ public class LessonsGUI {
             students[i] = lessonStudents.get(i).toString();
         }
 
+        model2 = new DefaultListModel<>();
         studentsList = new JList<>(students);
         studentsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         studentsList.setModel(model2);

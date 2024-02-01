@@ -11,7 +11,7 @@ public class MembersGUI {
     private static JComboBox levelSelect;
     private static JTextField ageTextField;
     private static ArrayList<String> members;
-    private static DefaultListModel<String> model = new DefaultListModel<>();
+    private static DefaultListModel<String> model;
     private static int index;
 
     public static void membersScreen() {
@@ -33,6 +33,8 @@ public class MembersGUI {
 
         //taking the list of members collected by the club class and sorting
         //them into alphabetical order using the Collections class
+        model = new DefaultListModel<>();
+        members = null;
         members = Club.memberNames();
         String[] membersString = new String[members.size()];
 
